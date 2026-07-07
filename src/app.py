@@ -78,6 +78,15 @@ activities = {
 }
 
 
+# Initialize the in-memory activity database from disk or defaults
+activities = load_activities()
+
+
+def save_activities() -> None:
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(activities, f, indent=2)
+
+
 @app.get("/")
 def root():
     return RedirectResponse(url="/static/index.html")
